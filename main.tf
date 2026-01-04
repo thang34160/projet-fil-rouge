@@ -60,7 +60,7 @@ resource "keycloak_openid_client" "vault_client" {
 
 ###   VAULT   ###
 
-## code trouvé avec IA: demander comment trouver ces infos san IA
+## ressource "vault_jwt_auth_backend" trouvée avec IA: demander comment trouver ces infos san IA ?
 
 # création de l'Authentication Methods 
 resource "vault_auth_backend" "oidc" {
@@ -91,4 +91,35 @@ resource "vault_jwt_auth_backend_role" "example" {
   user_claim            = "sub"
   role_type             = "oidc"
   allowed_redirect_uris = ["http://192.168.122.23:8200/ui/vault/auth/oidc/oidc/callback"]
+}
+
+
+## gestion des secrets dans vault
+
+# création du moteur de secret kv (key-value) et du chemin racine applications 
+resource "vault_mount" "apps" {
+  path        = "Applications"
+  type        = "kv"
+  options     = { version = "2" }
+  description = "Stockage des secrets par application"
+}
+
+# creation du secret pour l application 1
+resource "vault_kv_secret_v2" "app1_secret" {
+  mount = vault_mount.apps.path
+  name  = "app1/mon_secret" 
+  # transformation en json pour être lisible par vault
+  data_json = jsonencode({
+    # va chercher dans Apllication/app1/ le secret dont tu as besoin
+    api_key = "12345-abcde"
+  })
+}
+
+# creation du secret pour l application 2
+resource "vault_kv_secret_v2" "app2_secret" {
+  mount = vault_mount.apps.path
+  name  = "app1/mon_secret" 
+  data_json = jsonencode({
+    api_key = "12345-abcde"
+  })
 }
