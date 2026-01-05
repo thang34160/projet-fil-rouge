@@ -4,8 +4,8 @@ terraform {
   required_providers {
     # il n'existe pas de provider officiel car ldap est un protocol. Le provider nitda/ldap permet de créer user, group, et organisationnal units
     ldap = {
-      source  = "nitda/ldap" 
-      version = "0.1.0"
+      source = "dodevops/ldap"
+      version = "0.4.0"
     }
 
     keycloak = {

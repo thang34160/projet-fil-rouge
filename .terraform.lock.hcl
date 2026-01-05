@@ -1,6 +1,29 @@
 # This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
 
+provider "registry.terraform.io/dodevops/ldap" {
+  version     = "0.4.0"
+  constraints = "0.4.0"
+  hashes = [
+    "h1:8QX0T1PqOwGboMvxTrCFcOGrwh4A+o7lFABRrhG4oFg=",
+    "zh:23547decdbb96e7e0662f2af2eb0e19bef58999753e3742600c9470c1f217fc2",
+    "zh:247d2e66b8e9a96b58a86a51583304a3f9b5c9c1ea7bd3869b13e3de4911fb4a",
+    "zh:4a941939c2572b79b85675e08d3edf6f7142a86badfbc020e445fddc9016c202",
+    "zh:647177c478334c21cb6acf5866361a64a28461174f8378ea0be18c8c7de1cebe",
+    "zh:69c3daf918482489c5e2a9863b81cea3b4f5289c2d055303586a71cb34e62f11",
+    "zh:7a9d1c2af3e2d0e77efa72be5a4ea3be1f2e6a6a728f76511612963f11f46ff7",
+    "zh:890df766e9b839623b1f0437355032a3c006226a6c200cd911e15ee1a9014e9f",
+    "zh:8d01c28bda0a907e0878c79b63f13008478fdd05232c87df67e1e2e9dcdb2566",
+    "zh:a0b17e9c5b7efcb576dc2845a2b97ef96734e4eb69cf0043aaca492d31046ca8",
+    "zh:aced8586bd15081404244431b4abb443316eec279256a028727577cf7f430be2",
+    "zh:b5d33f4a0687c078454022e2cf46e8f1046b1de73f05d4d9d63ed586e0dedf15",
+    "zh:ca713ba49ba4097839678c5d81083446e1974621dbc71431d598db9c0601a02b",
+    "zh:dca219e8349e1e56ba4d0cefbafdbf4318ae3fb321577ba2a70e3295a27f7727",
+    "zh:dcd7969d2d07254ce7264295742de3433e3a59cf32b17d9817371f9b0be9bbbb",
+    "zh:f3dda4a863ceff8a53cbee8d6f4c9922284701afe9d9157cc6cdd1ddf236e999",
+  ]
+}
+
 provider "registry.terraform.io/hashicorp/vault" {
   version     = "5.6.0"
   constraints = "~> 5.6.0"

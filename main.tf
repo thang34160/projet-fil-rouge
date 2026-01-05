@@ -65,26 +65,21 @@ resource "keycloak_openid_client" "vault_client" {
 # création de l'Authentication Methods 
 resource "vault_auth_backend" "oidc" {
   type = "oidc"
-  path = "oidc/" # Chemin d'accès (ex: vault login -method=oidc)
+  path = "oidc" # Chemin d'accès (ex: vault login -method=oidc)
 }
 
 # liaison de vault et keycloak 
-resource "vault_jwt_auth_backend_config" "keycloak_config" {
-  backend            = vault_auth_backend.oidc.path
+resource "vault_jwt_auth_backend" "keycloak" {
+  type = "oidc"
+  path = "oidc" # Chemin d'accès (ex: vault login -method=oidc)
   oidc_discovery_url = "http://192.168.122.23:8080/realms/master"
   oidc_client_id     = keycloak_openid_client.vault_client.client_id
   oidc_client_secret = keycloak_openid_client.vault_client.client_secret
   default_role       = "admin-role"
 }
 
-# créer un role dans vault
-resource "vault_jwt_auth_backend" "oidc" {
-  path = "oidc"
-  default_role = "test-role"
-}
-
-resource "vault_jwt_auth_backend_role" "example" {
-  backend         = vault_jwt_auth_backend.oidc.path
+resource "vault_jwt_auth_backend_role" "admin" {
+  backend         = vault_jwt_auth_backend.keycloak.path
   role_name       = "admin-role"
   token_policies  = ["default", "admin"]
 
