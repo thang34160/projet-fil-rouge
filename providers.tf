@@ -25,11 +25,9 @@ terraform {
 
 # connexion au provider grâce à la documentation officielle du provider dans terraform registry
 provider "ldap" {
-  host     = "192.168.122.23"
-  port     = 389
-  bind_dn  = "cn=admin,dc=exemple,dc=com"
-  password = "votre_mot_de_passe"
-  tls      = false
+  ldap_url    = "ldaps://192.168.122.23:389"
+  ldap_bind_dn  = "cn=admin,dc=exemple,dc=com"
+  ldap_bind_password = var.ldap_password
 }
 
 
